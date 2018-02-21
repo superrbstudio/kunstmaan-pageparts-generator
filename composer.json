@@ -1,0 +1,25 @@
+{
+  "name": "superrb/kunstmaan-pageparts-generator",
+  "license": "MIT",
+  "type": "project",
+  "description": "A page part generator for the Kunstmaan Bundles CMS",
+  "authors": [
+    {
+      "name": "Giles Smith",
+      "email": "giles@superrb.com"
+    },
+    {
+      "name": "James Dinsdale",
+      "email": "james@superrb.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Superrb\\PagePartsGeneratorBundle\\": "src/Superrb/PagePartsGeneratorBundle"
+    }
+  },
+  "require": {
+    "kunstmaan/bundles-cms": "~5.0",
+    "molovo/object": "^1.0"
+  }
+}

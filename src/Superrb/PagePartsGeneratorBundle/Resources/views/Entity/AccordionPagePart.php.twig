@@ -1,0 +1,67 @@
+{% extends '@SuperrbPagePartsGenerator:Layout/PagePart.php.twig' %}
+
+{% block properties %}
+  /**
+    * @var string
+    *
+    * @ORM\Column(name="{{ titleFieldName }}", type="string", length=255, nullable=true)
+    */
+  private ${{ titleFieldName }};
+
+  /**
+    * @var string
+    *
+    * @ORM\Column(name="{{ descriptionFieldName }}", type="text", nullable=true)
+    */
+  private ${{ descriptionFieldName }};
+{% endblock %}
+
+{% block methods %}
+  /**
+    * Set {{ titleFieldName }}.
+    *
+    * @param string ${{ titleFieldName }}
+    *
+    * @return self
+    */
+  public function set{{ titleFieldName | ucfirst }}(${{ titleFieldName }})
+  {
+      $this->{{ titleFieldName }} = ${{ titleFieldName }};
+
+      return $this;
+  }
+
+  /**
+    * Get {{ titleFieldName }}.
+    *
+    * @return string
+    */
+  public function get{{ titleFieldName | ucfirst }}()
+  {
+      return $this->{{ titleFieldName }};
+  }
+
+  /**
+    * Set {{ descriptionFieldName }}.
+    *
+    * @param string ${{ descriptionFieldName }}
+    *
+    * @return self
+    */
+  public function set{{ descriptionFieldName | ucfirst }}(${{ descriptionFieldName }})
+  {
+      $this->{{ descriptionFieldName }} = ${{ descriptionFieldName }};
+
+      return $this;
+  }
+
+  /**
+    * Get {{ descriptionFieldName }}.
+    *
+    * @return string
+    */
+  public function get{{ descriptionFieldName | ucfirst }}()
+  {
+      return $this->{{ descriptionFieldName }};
+  }
+{% endblock %}

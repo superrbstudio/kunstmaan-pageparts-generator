@@ -1,0 +1,3 @@
+services:
+  superrb_page_parts_generator.generator_factory:
+    class: Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory
