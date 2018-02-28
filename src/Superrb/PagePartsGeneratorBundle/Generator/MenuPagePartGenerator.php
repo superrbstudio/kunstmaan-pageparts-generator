@@ -4,6 +4,8 @@ namespace Superrb\PagePartsGeneratorBundle\Generator;
 
 class MenuPagePartGenerator implements Helper\GeneratorInterface
 {
+    use Helper\GeneratesPageParts;
+
     /**
      * @var string
      */

@@ -4,6 +4,8 @@ namespace Superrb\PagePartsGeneratorBundle\Generator;
 
 class FaqPagePartGenerator extends AccordionPagePartGenerator
 {
+    use Helper\GeneratesPageParts;
+
     /**
      * @var string
      */

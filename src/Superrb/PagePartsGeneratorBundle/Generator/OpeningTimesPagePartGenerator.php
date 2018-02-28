@@ -4,6 +4,8 @@ namespace Superrb\PagePartsGeneratorBundle\Generator;
 
 class OpeningTimesPagePartGenerator implements Helper\GeneratorInterface
 {
+    use Helper\GeneratesPageParts;
+
     /**
      * @var string
      */

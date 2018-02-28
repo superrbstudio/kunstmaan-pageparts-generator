@@ -4,6 +4,8 @@ namespace Superrb\PagePartsGeneratorBundle\Generator;
 
 class CallToActionPagePartGenerator implements Helper\GeneratorInterface
 {
+    use Helper\GeneratesPageParts;
+
     /**
      * @var string
      */

@@ -4,6 +4,8 @@ namespace Superrb\PagePartsGeneratorBundle\Generator;
 
 class VideoPagePartGenerator implements Helper\GeneratorInterface
 {
+    use Helper\GeneratesPageParts;
+
     /**
      * @var string
      */

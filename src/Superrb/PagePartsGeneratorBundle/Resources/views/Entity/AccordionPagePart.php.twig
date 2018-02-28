@@ -24,7 +24,7 @@
     *
     * @return self
     */
-  public function set{{ titleFieldName | ucfirst }}(${{ titleFieldName }})
+  public function set{{ titleFieldName | ucfirst }}(string ${{ titleFieldName }}): self
   {
       $this->{{ titleFieldName }} = ${{ titleFieldName }};
 
@@ -36,7 +36,7 @@
     *
     * @return string
     */
-  public function get{{ titleFieldName | ucfirst }}()
+  public function get{{ titleFieldName | ucfirst }}(): string
   {
       return $this->{{ titleFieldName }};
   }
@@ -48,7 +48,7 @@
     *
     * @return self
     */
-  public function set{{ descriptionFieldName | ucfirst }}(${{ descriptionFieldName }})
+  public function set{{ descriptionFieldName | ucfirst }}(string ${{ descriptionFieldName }}): self
   {
       $this->{{ descriptionFieldName }} = ${{ descriptionFieldName }};
 
@@ -60,7 +60,7 @@
     *
     * @return string
     */
-  public function get{{ descriptionFieldName | ucfirst }}()
+  public function get{{ descriptionFieldName | ucfirst }}(): string
   {
       return $this->{{ descriptionFieldName }};
   }

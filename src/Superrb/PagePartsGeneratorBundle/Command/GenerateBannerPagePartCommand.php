@@ -3,6 +3,7 @@
 namespace Superrb\PagePartsGeneratorBundle\Command;
 
 use Superrb\PagePartsGeneratorBundle\Generator\BannerPagePartGenerator;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
 class GenerateBannerPagePartCommand extends ContainerAwareCommand implements Helper\GeneratePagePartCommandInterface
 {

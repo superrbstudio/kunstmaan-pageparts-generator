@@ -2,8 +2,8 @@
 
 namespace Superrb\PagePartsGeneratorBundle;
 
-use Molovo\Object\ImmutableObject;
+use Molovo\Object\Object;
 
-class GeneratorOptions extends ImmutableObject
+class GeneratorOptions extends Object
 {
 }

@@ -5,6 +5,9 @@ namespace Superrb\PagePartsGeneratorBundle\Service;
 use Superrb\PagePartsGeneratorBundle\Exception\GeneratorException;
 use Superrb\PagePartsGeneratorBundle\Generator;
 use Superrb\PagePartsGeneratorBundle\Generator\Helper\GeneratorInterface;
+use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Twig\Environment;
 
 class GeneratorFactory
 {
@@ -39,8 +42,18 @@ class GeneratorFactory
      */
     protected $options;
 
-    public function __construct()
+    /**
+     * @var ContainerBuilder
+     */
+    protected $container;
+
+    /**
+     * @param Environment $twig
+     */
+    public function __construct(Environment $twig)
     {
+        $this->container = new ContainerBuilder();
+        $this->container->register('twig', $twig);
     }
 
     /**
@@ -59,7 +72,7 @@ class GeneratorFactory
             throw new GeneratorException("The generator '${type}' could not be found");
         }
 
-        $generator = new $class(new GeneratorOptions($options));
+        $generator = new $class($this->container, new GeneratorOptions($options));
 
         if (!($generator instanceof GeneratorInterface)) {
             throw new GeneratorException($class.' is not a valid instance of '.GeneratorInterface::class);
