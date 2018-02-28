@@ -20,6 +20,6 @@
   },
   "require": {
     "kunstmaan/bundles-cms": "~5.0",
-    "molovo/object": "^1.0"
+    "molovo/object": "^2.0"
   }
 }
