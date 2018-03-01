@@ -1,30 +1,30 @@
-{% extends '@SuperrbPagePartsGenerator:Layout/PagePart.php.twig' %}
+{% extends 'Layout/PagePart.php.twig' %}
 
 {% block properties %}
   /**
-    * @var string
-    *
-    * @ORM\Column(name="{{ titleFieldName }}", type="string", length=255, nullable=true)
-    */
+   * @var string
+   *
+   * @ORM\Column(name="{{ titleFieldName }}", type="string", length=255, nullable=true)
+   */
   private ${{ titleFieldName }};
 
   /**
-    * @var string
-    *
-    * @ORM\Column(name="{{ descriptionFieldName }}", type="text", nullable=true)
-    */
+   * @var string
+   *
+   * @ORM\Column(name="{{ descriptionFieldName }}", type="text", nullable=true)
+   */
   private ${{ descriptionFieldName }};
 {% endblock %}
 
 {% block methods %}
   /**
-    * Set {{ titleFieldName }}.
-    *
-    * @param string ${{ titleFieldName }}
-    *
-    * @return self
-    */
-  public function set{{ titleFieldName | ucfirst }}(string ${{ titleFieldName }}): self
+   * Set {{ titleFieldName }}.
+   *
+   * @param string ${{ titleFieldName }}
+   *
+   * @return self
+   */
+  public function set{{ titleFieldName | capitalize }}(string ${{ titleFieldName }}): self
   {
       $this->{{ titleFieldName }} = ${{ titleFieldName }};
 
@@ -32,23 +32,23 @@
   }
 
   /**
-    * Get {{ titleFieldName }}.
-    *
-    * @return string
-    */
-  public function get{{ titleFieldName | ucfirst }}(): string
+   * Get {{ titleFieldName }}.
+   *
+   * @return string
+   */
+  public function get{{ titleFieldName | capitalize }}(): string
   {
       return $this->{{ titleFieldName }};
   }
 
   /**
-    * Set {{ descriptionFieldName }}.
-    *
-    * @param string ${{ descriptionFieldName }}
-    *
-    * @return self
-    */
-  public function set{{ descriptionFieldName | ucfirst }}(string ${{ descriptionFieldName }}): self
+   * Set {{ descriptionFieldName }}.
+   *
+   * @param string ${{ descriptionFieldName }}
+   *
+   * @return self
+   */
+  public function set{{ descriptionFieldName | capitalize }}(string ${{ descriptionFieldName }}): self
   {
       $this->{{ descriptionFieldName }} = ${{ descriptionFieldName }};
 
@@ -56,11 +56,11 @@
   }
 
   /**
-    * Get {{ descriptionFieldName }}.
-    *
-    * @return string
-    */
-  public function get{{ descriptionFieldName | ucfirst }}(): string
+   * Get {{ descriptionFieldName }}.
+   *
+   * @return string
+   */
+  public function get{{ descriptionFieldName | capitalize }}(): string
   {
       return $this->{{ descriptionFieldName }};
   }

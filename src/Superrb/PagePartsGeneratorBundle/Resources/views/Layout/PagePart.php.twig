@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ vendor }}\{{ bundle }}\Entity\PageParts;
+{# namespace {{ vendor }}\{{ bundle }}\Entity\PageParts; #}
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class {{ className }} extends AbstractPagePart
 {
-  {% block properties %}{% endblock %}
+{% block properties %}{% endblock %}
 
-  {% block getters %}{% endblock %}
+{% block methods %}{% endblock %}
 }

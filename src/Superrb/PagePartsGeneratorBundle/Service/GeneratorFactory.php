@@ -6,7 +6,7 @@ use Superrb\PagePartsGeneratorBundle\Exception\GeneratorException;
 use Superrb\PagePartsGeneratorBundle\Generator;
 use Superrb\PagePartsGeneratorBundle\Generator\Helper\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
 use Twig\Environment;
 
 class GeneratorFactory
@@ -43,17 +43,34 @@ class GeneratorFactory
     protected $options;
 
     /**
-     * @var ContainerBuilder
+     * @var FileLocator
      */
-    protected $container;
+    protected $kernel;
+
+    /**
+     * @var Environment
+     */
+    protected $twig;
 
     /**
      * @param Environment $twig
+     * @param FileLocator $fileLocator
      */
-    public function __construct(Environment $twig)
+    public function __construct(FileLocator $fileLocator, Environment $twig)
     {
-        $this->container = new ContainerBuilder();
-        $this->container->register('twig', $twig);
+        $this->fileLocator = $fileLocator;
+        $this->twig        = $twig;
+
+        $twigLoader = new \Twig\Loader\FilesystemLoader($this->fileLocator->locate('@SuperrbPagePartsGeneratorBundle/Resources/views'));
+        $this->twig->setLoader($twigLoader);
+    }
+
+    /**
+     * @return Environment
+     */
+    public function getTwig(): Environment
+    {
+        return $this->twig;
     }
 
     /**
@@ -72,7 +89,7 @@ class GeneratorFactory
             throw new GeneratorException("The generator '${type}' could not be found");
         }
 
-        $generator = new $class($this->container, new GeneratorOptions($options));
+        $generator = new $class($this, new GeneratorOptions($options));
 
         if (!($generator instanceof GeneratorInterface)) {
             throw new GeneratorException($class.' is not a valid instance of '.GeneratorInterface::class);

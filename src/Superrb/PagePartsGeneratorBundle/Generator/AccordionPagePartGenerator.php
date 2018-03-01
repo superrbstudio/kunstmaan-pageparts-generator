@@ -14,7 +14,7 @@ class AccordionPagePartGenerator implements Helper\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/AccordionPagePart.php.twig';
+    const TEMPLATE = 'Entity/AccordionPagePart.php.twig';
 
     /**
      * @var array

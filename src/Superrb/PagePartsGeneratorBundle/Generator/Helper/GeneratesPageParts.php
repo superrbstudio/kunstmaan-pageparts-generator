@@ -3,9 +3,8 @@
 namespace Superrb\PagePartsGeneratorBundle\Generator\Helper;
 
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
+use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Twig\Environment;
 
 trait GeneratesPageParts
 {
@@ -20,12 +19,12 @@ trait GeneratesPageParts
     protected $options;
 
     /**
+     * @param GeneratorFactory $factory
      * @param GeneratorOptions $options
-     * @param ContainerBuilder $container
      */
-    public function __construct(ContainerBuilder $container, GeneratorOptions $options)
+    public function __construct(GeneratorFactory $factory, GeneratorOptions $options)
     {
-        $this->container = $container;
+        $this->factory   = $factory;
         $this->options   = $this->getDefaultOptions()->merge($options);
     }
 
@@ -42,10 +41,7 @@ trait GeneratesPageParts
      */
     public function generate(): bool
     {
-        /** @var Environment $twig */
-        $loader = new \Twig\Loader\FilesystemLoader('');
-        $twig   = $this->container->get('twig');
-        echo $this->container->get('twig')->render(self::TEMPLATE, $this->options->toArray());
+        echo $this->factory->getTwig()->render(self::TEMPLATE, $this->options->toArray());
         exit;
     }
 }
