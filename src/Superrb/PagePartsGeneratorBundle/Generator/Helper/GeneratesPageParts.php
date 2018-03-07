@@ -2,7 +2,6 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator\Helper;
 
-use Doctrine\Common\Inflector\Inflector;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
 use Symfony\Component\DependencyInjection\Container;
@@ -20,6 +19,8 @@ trait GeneratesPageParts
     protected $options;
 
     /**
+     * @see GeneratorInterface::__construct()
+     *
      * @param GeneratorFactory $factory
      * @param GeneratorOptions $options
      */
@@ -38,20 +39,16 @@ trait GeneratesPageParts
     }
 
     /**
+     * @see GeneratorInterface::generate()
+     *
      * @return bool
      */
     public function generate(): bool
     {
         echo $this->factory->getTwig()->render(self::TEMPLATE, $this->options->toArray());
 
-        if (self::ITEM_TEMPLATE) {
-            $itemOptions                  = clone $this->options;
-            $itemOptions->parentClassName = $itemOptions->className;
-            $itemOptions->className       = $itemOptions->className.ucfirst(Inflector::singularize($itemOptions->itemFieldName));
-            $itemOptions->parentTableName = $itemOptions->tableName;
-            $itemOptions->tableName       = Inflector::singularize($itemOptions->tableName).'_'.$itemOptions->itemFieldName;
-
-            echo $this->factory->getTwig()->render(self::ITEM_TEMPLATE, $itemOptions->toArray());
+        if ($this instanceof ChildGeneratorInterface) {
+            $this->generateChildren();
         }
 
         exit;

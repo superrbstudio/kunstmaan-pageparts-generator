@@ -2,9 +2,10 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator;
 
-class AccordionPagePartGenerator implements Helper\GeneratorInterface
+class AccordionPagePartGenerator implements Helper\GeneratorInterface, Helper\ChildGeneratorInterface
 {
-    use Helper\GeneratesPageParts;
+    use Helper\GeneratesPageParts,
+        Helper\GeneratesPagePartChildren;
 
     /**
      * @var string
