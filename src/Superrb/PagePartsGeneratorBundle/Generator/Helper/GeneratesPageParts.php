@@ -45,10 +45,14 @@ trait GeneratesPageParts
      */
     public function generate(): bool
     {
-        echo $this->factory->getTwig()->render(self::TEMPLATE, $this->options->toArray());
-
         if ($this instanceof ChildGeneratorInterface) {
             $this->generateChildren();
+        }
+
+        echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::TEMPLATE, $this->options->toArray());
+
+        if (self::ADMIN_TYPE_TEMPLATE) {
+            echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::ADMIN_TYPE_TEMPLATE, $this->options->toArray());
         }
 
         exit;

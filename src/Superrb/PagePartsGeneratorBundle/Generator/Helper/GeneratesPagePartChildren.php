@@ -13,13 +13,22 @@ trait GeneratesPagePartChildren
      */
     public function generateChildren(): bool
     {
+        // First, create the class and table names for the children
+        $this->options->itemClassName = $this->options->className.ucfirst(Inflector::singularize($this->options->itemFieldName));
+        $this->options->itemTableName = Inflector::singularize($this->options->tableName).'_'.$this->options->itemFieldName;
+
+        // Then clone options and rearrange so they can be used in child templates
         $itemOptions                  = clone $this->options;
         $itemOptions->parentClassName = $itemOptions->className;
-        $itemOptions->className       = $itemOptions->className.ucfirst(Inflector::singularize($itemOptions->itemFieldName));
+        $itemOptions->className       = $itemOptions->itemClassName;
         $itemOptions->parentTableName = $itemOptions->tableName;
-        $itemOptions->tableName       = Inflector::singularize($itemOptions->tableName).'_'.$itemOptions->itemFieldName;
+        $itemOptions->tableName       = $itemOptions->itemTableName;
 
-        echo $this->factory->getTwig()->render(self::ITEM_TEMPLATE, $itemOptions->toArray());
+        echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::ITEM_TEMPLATE, $itemOptions->toArray());
+
+        if (self::ITEM_ADMIN_TYPE_TEMPLATE) {
+            echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::ITEM_ADMIN_TYPE_TEMPLATE, $itemOptions->toArray());
+        }
 
         return true;
     }
