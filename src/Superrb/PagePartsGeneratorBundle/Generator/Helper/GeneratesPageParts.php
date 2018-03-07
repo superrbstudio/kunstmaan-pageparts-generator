@@ -31,9 +31,11 @@ trait GeneratesPageParts
     }
 
     /**
-     * @var GeneratorOptions
+     * @see GeneratorInterface::getDefaultOptions()
+     *
+     * @return GeneratorOptions
      */
-    protected function getDefaultOptions()
+    public function getDefaultOptions(): GeneratorOptions
     {
         return new GeneratorOptions(self::DEFAULT_OPTIONS);
     }

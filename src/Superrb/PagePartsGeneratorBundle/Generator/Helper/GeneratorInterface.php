@@ -15,6 +15,11 @@ interface GeneratorInterface
     public function __construct(GeneratorFactory $factory, GeneratorOptions $options);
 
     /**
+     * @return GeneratorOptions
+     */
+    public function getDefaultOptions(): GeneratorOptions;
+
+    /**
      * Generates the required page part.
      *
      * @throws GeneratorException
