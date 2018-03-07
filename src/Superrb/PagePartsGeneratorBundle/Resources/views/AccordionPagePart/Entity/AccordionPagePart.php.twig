@@ -1,0 +1,66 @@
+{% extends 'Layout/PagePart.php.twig' %}
+
+{% set itemClassName = className ~ (itemFieldName | singularize | capitalize) %}
+{% block use %}
+use Doctrine\Common\Collections\ArrayCollection;
+use {{ vendor }}\{{ bundle }}\Entity\{{ itemClassName }};
+{% endblock %}
+
+{% block className %}{{ className }}{% endblock %}
+
+{% block properties %}
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\Column(name="{{ itemFieldName }}", type="string", length=255, nullable=true)
+     */
+    protected ${{ itemFieldName | pluralize }};
+{% endblock %}
+
+{% block methods %}
+    /**
+     * @return ArrayCollection
+     */
+    public function get{{ itemFieldName | pluralize | capitalize }}(): ArrayCollection
+    {
+        return $this->{{ itemFieldName | pluralize }};
+    }
+
+    /**
+     * @param ArrayCollection $items
+     *
+     * @return self
+     */
+    public function set{{ itemFieldName | pluralize | capitalize }}(ArrayCollection $items): self
+    {
+        $this->{{ itemFieldName | pluralize | capitalize }} = $items;
+
+        return $this;
+    }
+
+    /**
+     * @param {{ itemFieldName | singularize | capitalize }} ${{ itemFieldName | singularize }}
+     *
+     * @return self
+     */
+    public function add{{ itemFieldName | singularize | capitalize }}({{ itemClassName }} ${{ itemFieldName | singularize }}): self
+    {
+        ${{ itemFieldName | singularize }}->set{{ className }}($this);
+        $this->{{ itemFieldName | pluralize }}->add(${{ itemFieldName | singularize }});
+
+        return $this;
+    }
+
+    /**
+     * @param {{ itemClassName }} ${{ itemFieldName | singularize }}
+     *
+     * @return self
+     */
+    public function remove{{ itemFieldName | singularize | capitalize }}({{ itemClassName }} ${{ itemFieldName | singularize }}): self
+    {
+        ${{ itemFieldName | singularize }}->set{{ className }}(null);
+        $this->{{ itemFieldName | pluralize }}->removeItem(${{ itemFieldName | singularize }});
+
+        return $this;
+    }
+{% endblock %}

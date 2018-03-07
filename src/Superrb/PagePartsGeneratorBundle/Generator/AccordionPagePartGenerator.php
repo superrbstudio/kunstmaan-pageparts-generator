@@ -14,7 +14,12 @@ class AccordionPagePartGenerator implements Helper\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = 'Entity/AccordionPagePart.php.twig';
+    const TEMPLATE = 'AccordionPagePart/Entity/AccordionPagePart.php.twig';
+
+    /**
+     * @var string
+     */
+    const ITEM_TEMPLATE = 'AccordionPagePart/Entity/AccordionPagePartItem.php.twig';
 
     /**
      * @var array
@@ -24,5 +29,8 @@ class AccordionPagePartGenerator implements Helper\GeneratorInterface
         'tableName'            => 'accordion_page_parts',
         'titleFieldName'       => 'title',
         'descriptionFieldName' => 'description',
+        'itemFieldName'        => 'items',
+        'vendor'               => 'Superrb',
+        'bundle'               => 'PagePartGeneratorTestBundle',
     ];
 }

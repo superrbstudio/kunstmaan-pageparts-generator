@@ -1,0 +1,99 @@
+{% extends 'Layout/Entity.php.twig' %}
+
+{% block use %}
+{% endblock %}
+
+{% block properties %}
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="{{ titleFieldName }}", type="string", length=255, nullable=true)
+     */
+    private ${{ titleFieldName }};
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="{{ descriptionFieldName }}", type="text", nullable=true)
+     */
+    private ${{ descriptionFieldName }};
+
+    /**
+     * @var {{ parentClassName }}
+     *
+     * @ORM\ManyToOne(targetEntity="\{{ vendor }}\{{ bundle }}\Entity\PageParts\{{ parentClassName }}",
+     *     inversedBy="{{ itemFieldName | pluralize }}")
+     * @ORM\JoinColumn(name="{{ parentTableName | singularize }}_id", referencedColumnName="id")
+     */
+    private ${{ parentClassName | uncapitalize }};
+{% endblock %}
+
+{% block methods %}
+    /**
+     * Set {{ titleFieldName }}.
+     *
+     * @param string ${{ titleFieldName }}
+     *
+     * @return self
+     */
+    public function set{{ titleFieldName | capitalize }}(string ${{ titleFieldName }}): self
+    {
+        $this->{{ titleFieldName }} = ${{ titleFieldName }};
+
+        return $this;
+    }
+
+    /**
+     * Get {{ titleFieldName }}.
+     *
+     * @return string
+     */
+    public function get{{ titleFieldName | capitalize }}(): string
+    {
+        return $this->{{ titleFieldName }};
+    }
+
+    /**
+     * Set {{ descriptionFieldName }}.
+     *
+     * @param string ${{ descriptionFieldName }}
+     *
+     * @return self
+     */
+    public function set{{ descriptionFieldName | capitalize }}(string ${{ descriptionFieldName }}): self
+    {
+        $this->{{ descriptionFieldName }} = ${{ descriptionFieldName }};
+
+        return $this;
+    }
+
+    /**
+     * Get {{ descriptionFieldName }}.
+     *
+     * @return string
+     */
+    public function get{{ descriptionFieldName | capitalize }}(): string
+    {
+        return $this->{{ descriptionFieldName }};
+    }
+
+    /**
+     * @return {{ parentClassName }}
+     */
+    public function get{{ parentClassName }}(): {{ parentClassName }}
+    {
+      return $this->{{ parentClassName | uncapitalize }};
+    }
+
+    /**
+     * @param {{ parentClassName }} ${{ parentClassName | uncapitalize }}
+     *
+     * @return self
+     */
+    public function set{{ parentClassName }}({{ parentClassName }} ${{ parentClassName | uncapitalize }}): self
+    {
+      $this->{{ parentClassName | uncapitalize }} = ${{ parentClassName | uncapitalize }};
+
+      return $this;
+    }
+{% endblock %}

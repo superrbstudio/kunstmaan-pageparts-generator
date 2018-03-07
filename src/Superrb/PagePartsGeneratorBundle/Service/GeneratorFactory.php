@@ -2,12 +2,15 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Service;
 
+use Doctrine\Common\Inflector\Inflector;
 use Superrb\PagePartsGeneratorBundle\Exception\GeneratorException;
 use Superrb\PagePartsGeneratorBundle\Generator;
 use Superrb\PagePartsGeneratorBundle\Generator\Helper\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Symfony\Component\Config\FileLocator;
 use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
 
 class GeneratorFactory
 {
@@ -22,6 +25,7 @@ class GeneratorFactory
         Generator\CallToActionPagePartGenerator::TYPE   => Generator\CallToActionPagePartGenerator::class,
         Generator\ClientsPagePartGenerator::TYPE        => Generator\ClientsPagePartGenerator::class,
         Generator\ContactDetailsPagePartGenerator::TYPE => Generator\ContactDetailsPagePartGenerator::class,
+        Generator\FaqPagePartGenerator::TYPE            => Generator\FaqPagePartGenerator::class,
         Generator\GalleryPagePartGenerator::TYPE        => Generator\GalleryPagePartGenerator::class,
         Generator\MapPagePartGenerator::TYPE            => Generator\MapPagePartGenerator::class,
         Generator\MenuPagePartGenerator::TYPE           => Generator\MenuPagePartGenerator::class,
@@ -60,9 +64,28 @@ class GeneratorFactory
     {
         $this->fileLocator = $fileLocator;
         $this->twig        = $twig;
+        $this->setupTwig();
+    }
 
-        $twigLoader = new \Twig\Loader\FilesystemLoader($this->fileLocator->locate('@SuperrbPagePartsGeneratorBundle/Resources/views'));
+    private function setupTwig()
+    {
+        $twigLoader = new FilesystemLoader($this->fileLocator->locate('@SuperrbPagePartsGeneratorBundle/Resources/views'));
         $this->twig->setLoader($twigLoader);
+
+        $singularize = new TwigFilter('singularize', function ($string) {
+            return Inflector::singularize($string);
+        });
+        $this->twig->addFilter($singularize);
+
+        $pluralize = new TwigFilter('pluralize', function ($string) {
+            return Inflector::pluralize($string);
+        });
+        $this->twig->addFilter($pluralize);
+
+        $uncapitalize = new TwigFilter('uncapitalize', function ($string) {
+            return strtolower(substr($string, 0, 1)).substr($string, 1);
+        });
+        $this->twig->addFilter($uncapitalize);
     }
 
     /**

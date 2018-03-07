@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ vendor }}\{{ bundle }}\Entity\PageParts;
+namespace {{ vendor }}\{{ bundle }}\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 {% block use %}{% endblock %}
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="{{ tableName }}")
  * @ORM\Entity
  */
-class {{ className }} extends AbstractPagePart
+class {{ className }} extends AbstractEntity
 {
 {% block properties %}{% endblock %}
 

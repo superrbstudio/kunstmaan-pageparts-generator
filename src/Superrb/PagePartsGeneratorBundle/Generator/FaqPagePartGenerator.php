@@ -19,5 +19,8 @@ class FaqPagePartGenerator extends AccordionPagePartGenerator
         'tableName'            => 'faq_page_parts',
         'titleFieldName'       => 'question',
         'descriptionFieldName' => 'answer',
+        'itemFieldName'        => 'questions',
+        'vendor'               => 'Superrb',
+        'bundle'               => 'PagePartGeneratorTestBundle',
     ];
 }
