@@ -10,6 +10,16 @@ use Symfony\Component\DependencyInjection\Exception\BadMethodCallException;
 trait GeneratesPageParts
 {
     /**
+     * @var InputInterface
+     */
+    protected $input;
+
+    /**
+     * @var OutputInterface
+     */
+    protected $output;
+
+    /**
      * Configure the command.
      */
     public function configure(): void
@@ -33,6 +43,7 @@ trait GeneratesPageParts
         $generatorFactory = $this->getContainer()->get('superrb_page_parts_generator.generator_factory');
 
         return $generatorFactory->create(static::TYPE, [])
+            ->setIo($this->input, $this->output)
             ->generate();
     }
 
@@ -42,6 +53,8 @@ trait GeneratesPageParts
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->input  = $input;
+        $this->output = $output;
         $output->writeln($this->generate());
     }
 }

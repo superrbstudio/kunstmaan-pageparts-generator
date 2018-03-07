@@ -6,6 +6,8 @@ use Superrb\PagePartsGeneratorBundle\Generator\Contract\ChildGeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\Generator\Contract\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\Container;
 
 trait GeneratesPageParts
@@ -19,6 +21,16 @@ trait GeneratesPageParts
      * @var GeneratorOptions
      */
     protected $options;
+
+    /**
+     * @var InputInterface
+     */
+    protected $input;
+
+    /**
+     * @var OutputInterface
+     */
+    protected $output;
 
     /**
      * @see GeneratorInterface::__construct()
@@ -40,6 +52,22 @@ trait GeneratesPageParts
     public function getDefaultOptions(): GeneratorOptions
     {
         return new GeneratorOptions(self::DEFAULT_OPTIONS);
+    }
+
+    /**
+     * @see GeneratorInterface::setIo()
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return GeneratorInterface
+     */
+    public function setIo(InputInterface $input, OutputInterface $output): GeneratorInterface
+    {
+        $this->input  = $input;
+        $this->output = $output;
+
+        return $this;
     }
 
     /**
