@@ -5,7 +5,7 @@ namespace Superrb\PagePartsGeneratorBundle\Command;
 use Superrb\PagePartsGeneratorBundle\Generator\SocialMediaPagePartGenerator;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class GenerateSocialMediaPagePartCommand extends ContainerAwareCommand implements Helper\GeneratePagePartCommandInterface
+class GenerateSocialMediaPagePartCommand extends ContainerAwareCommand implements Contract\GeneratePagePartCommandInterface
 {
     use Helper\GeneratesPageParts;
 

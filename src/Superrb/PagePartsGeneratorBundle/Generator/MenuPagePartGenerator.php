@@ -2,7 +2,7 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator;
 
-class MenuPagePartGenerator implements Helper\GeneratorInterface
+class MenuPagePartGenerator implements Contract\GeneratorInterface
 {
     use Helper\GeneratesPageParts;
 

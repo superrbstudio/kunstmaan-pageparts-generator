@@ -5,7 +5,7 @@ namespace Superrb\PagePartsGeneratorBundle\Command;
 use Superrb\PagePartsGeneratorBundle\Generator\AccordionPagePartGenerator;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class GenerateAccordionPagePartCommand extends ContainerAwareCommand implements Helper\GeneratePagePartCommandInterface
+class GenerateAccordionPagePartCommand extends ContainerAwareCommand implements Contract\GeneratePagePartCommandInterface
 {
     use Helper\GeneratesPageParts {
         Helper\GeneratesPageParts::configure as __configureBase;

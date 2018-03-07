@@ -2,7 +2,7 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator;
 
-class TestimonialPagePartGenerator implements Helper\GeneratorInterface
+class TestimonialPagePartGenerator implements Contract\GeneratorInterface
 {
     use Helper\GeneratesPageParts;
 

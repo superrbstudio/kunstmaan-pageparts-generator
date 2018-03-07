@@ -2,7 +2,7 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator;
 
-class BannerPagePartGenerator implements Helper\GeneratorInterface
+class BannerPagePartGenerator implements Contract\GeneratorInterface
 {
     use Helper\GeneratesPageParts;
 

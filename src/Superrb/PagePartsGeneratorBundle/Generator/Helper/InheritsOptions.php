@@ -2,6 +2,7 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator\Helper;
 
+use Superrb\PagePartsGeneratorBundle\Generator\Contract\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 
 trait InheritsOptions

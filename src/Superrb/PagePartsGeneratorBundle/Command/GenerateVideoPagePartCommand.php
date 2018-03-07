@@ -5,7 +5,7 @@ namespace Superrb\PagePartsGeneratorBundle\Command;
 use Superrb\PagePartsGeneratorBundle\Generator\VideoPagePartGenerator;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class GenerateVideoPagePartCommand extends ContainerAwareCommand implements Helper\GeneratePagePartCommandInterface
+class GenerateVideoPagePartCommand extends ContainerAwareCommand implements Contract\GeneratePagePartCommandInterface
 {
     use Helper\GeneratesPageParts;
 

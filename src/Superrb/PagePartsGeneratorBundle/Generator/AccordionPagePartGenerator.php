@@ -2,7 +2,7 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator;
 
-class AccordionPagePartGenerator implements Helper\GeneratorInterface, Helper\ChildGeneratorInterface
+class AccordionPagePartGenerator implements Contract\GeneratorInterface, Contract\ChildGeneratorInterface
 {
     use Helper\GeneratesPageParts,
         Helper\GeneratesPagePartChildren;

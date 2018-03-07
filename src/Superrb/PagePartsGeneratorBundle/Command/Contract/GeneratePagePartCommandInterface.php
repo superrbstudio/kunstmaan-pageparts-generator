@@ -1,6 +1,6 @@
 <?php
 
-namespace Superrb\PagePartsGeneratorBundle\Command\Helper;
+namespace Superrb\PagePartsGeneratorBundle\Command\Contract;
 
 interface GeneratePagePartCommandInterface
 {

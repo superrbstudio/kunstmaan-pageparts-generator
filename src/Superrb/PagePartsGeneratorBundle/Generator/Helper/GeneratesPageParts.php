@@ -2,6 +2,8 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator\Helper;
 
+use Superrb\PagePartsGeneratorBundle\Generator\Contract\ChildGeneratorInterface;
+use Superrb\PagePartsGeneratorBundle\Generator\Contract\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
 use Symfony\Component\DependencyInjection\Container;

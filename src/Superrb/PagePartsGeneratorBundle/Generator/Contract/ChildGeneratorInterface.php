@@ -1,6 +1,6 @@
 <?php
 
-namespace Superrb\PagePartsGeneratorBundle\Generator\Helper;
+namespace Superrb\PagePartsGeneratorBundle\Generator\Contract;
 
 use Superrb\PagePartsGeneratorBundle\Exception\GeneratorException;
 

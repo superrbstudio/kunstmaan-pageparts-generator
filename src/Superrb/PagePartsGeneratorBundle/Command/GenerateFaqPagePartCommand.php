@@ -5,7 +5,7 @@ namespace Superrb\PagePartsGeneratorBundle\Command;
 use Superrb\PagePartsGeneratorBundle\Generator\FaqPagePartGenerator;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class GenerateFaqPagePartCommand extends ContainerAwareCommand implements Helper\GeneratePagePartCommandInterface
+class GenerateFaqPagePartCommand extends ContainerAwareCommand implements Contract\GeneratePagePartCommandInterface
 {
     use Helper\GeneratesPageParts {
         Helper\GeneratesPageParts::configure as __configureBase;

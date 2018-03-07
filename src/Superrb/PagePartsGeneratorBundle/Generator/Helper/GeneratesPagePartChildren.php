@@ -3,6 +3,7 @@
 namespace Superrb\PagePartsGeneratorBundle\Generator\Helper;
 
 use Doctrine\Common\Inflector\Inflector;
+use Superrb\PagePartsGeneratorBundle\Generator\Contract\ChildGeneratorInterface;
 
 trait GeneratesPagePartChildren
 {

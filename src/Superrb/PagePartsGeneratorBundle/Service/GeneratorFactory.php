@@ -5,7 +5,7 @@ namespace Superrb\PagePartsGeneratorBundle\Service;
 use Doctrine\Common\Inflector\Inflector;
 use Superrb\PagePartsGeneratorBundle\Exception\GeneratorException;
 use Superrb\PagePartsGeneratorBundle\Generator;
-use Superrb\PagePartsGeneratorBundle\Generator\Helper\GeneratorInterface;
+use Superrb\PagePartsGeneratorBundle\Generator\Contract\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Symfony\Component\Config\FileLocator;
 use Twig\Environment;
