@@ -1,0 +1,22 @@
+{% extends 'Layout/PagePartAdminType.php.twig' %}
+
+{% block use %}
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+{% endblock %}
+
+{% block fields %}
+$builder->add('{{ itemFieldName }}', CollectionType::class, [
+            'required'     => true,
+            'entry_type'   => {{ itemClassName }}AdminType::class,
+            'allow_add'    => true,
+            'allow_delete' => true,
+            'by_reference' => false,
+            'label'        => 'pagepart.{{ className | lower }}.{{ itemFieldName }}',
+            'attr'         => [
+                'nested_form'           => true,
+                'nested_form_min'       => 1,
+                {% if includeDisplayOrder %}'nested_sortable'       => true,
+                'nested_sortable_field' => 'displayOrder',
+            {% endif %}],
+        ]);
+{% endblock %}

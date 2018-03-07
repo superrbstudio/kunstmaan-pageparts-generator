@@ -1,0 +1,24 @@
+{% extends 'Layout/AdminType.php.twig' %}
+
+{% set descriptionFieldType = 'TextareaType' %}
+{% if useWysiwyg %}
+    {% set descriptionFieldType = 'WysiwygType' %}
+{% endif %}
+
+{% block use %}
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Kunstmaan\AdminBundle\Form\WysiwygType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+{% endblock %}
+
+{% block fields %}
+$builder->add('{{ titleFieldName }}', TextType::class, [
+            'required' => true,
+            'label' => 'pagepart.{{ className | lower }}.{{ titleFieldName }}',
+        ]);
+
+        $builder->add('{{ descriptionFieldName }}', {{ descriptionFieldType }}::class, [
+            'required' => true,
+            'label' => 'pagepart.{{ className | lower }}.{{ descriptionFieldName }}',
+        ]);
+{% endblock %}

@@ -1,6 +1,5 @@
 {% extends 'Layout/PagePart.php.twig' %}
 
-{% set itemClassName = className ~ (itemFieldName | singularize | capitalize) %}
 {% block use %}
 use Doctrine\Common\Collections\ArrayCollection;
 use {{ vendor }}\{{ bundle }}\Entity\{{ itemClassName }};
@@ -12,8 +11,11 @@ use {{ vendor }}\{{ bundle }}\Entity\{{ itemClassName }};
     /**
      * @var ArrayCollection
      *
-     * @ORM\Column(name="{{ itemFieldName }}", type="string", length=255, nullable=true)
-     */
+     * @ORM\OneToMany(targetEntity="\{{ vendor }}\{{ bundle }}\Entity\{{ itemClassName }}", mappedBy="{{ itemFieldName }}",
+     *     cascade={"persist", "remove"}, orphanRemoval=true )
+     {% if includeDisplayOrder %}
+* @ORM\OrderBy({ "displayOrder" = "ASC" })
+     {% endif %}*/
     protected ${{ itemFieldName | pluralize }};
 {% endblock %}
 

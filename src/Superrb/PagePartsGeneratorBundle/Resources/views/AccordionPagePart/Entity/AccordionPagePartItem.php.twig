@@ -1,6 +1,7 @@
 {% extends 'Layout/Entity.php.twig' %}
 
 {% block use %}
+use {{ vendor }}\{{ bundle }}\Entity\PageParts\{{ parentClassName }};
 {% endblock %}
 
 {% block properties %}
@@ -17,6 +18,15 @@
      * @ORM\Column(name="{{ descriptionFieldName }}", type="text", nullable=true)
      */
     private ${{ descriptionFieldName }};
+
+    {% if includeDisplayOrder %}
+/**
+     * @var int
+     *
+     * @ORM\Column(name="display_order", type="int", nullable=true)
+     */
+    private $displayOrder;
+    {% endif %}
 
     /**
      * @var {{ parentClassName }}
@@ -76,6 +86,32 @@
     {
         return $this->{{ descriptionFieldName }};
     }
+
+    {% if includeDisplayOrder %}
+/**
+     * Set displayOrder.
+     *
+     * @param string $displayOrder
+     *
+     * @return self
+     */
+    public function setDisplayOrder(string $displayOrder): self
+    {
+        $this->displayOrder = $displayOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get displayOrder.
+     *
+     * @return string
+     */
+    public function getDisplayOrder(): string
+    {
+        return $this->displayOrder;
+    }
+    {% endif %}
 
     /**
      * @return {{ parentClassName }}

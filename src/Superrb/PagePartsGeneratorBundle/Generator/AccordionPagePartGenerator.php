@@ -15,12 +15,27 @@ class AccordionPagePartGenerator implements Helper\GeneratorInterface, Helper\Ch
     /**
      * @var string
      */
-    const TEMPLATE = 'AccordionPagePart/Entity/AccordionPagePart.php.twig';
+    const TYPE_CLASS = 'AccordionPagePart';
 
     /**
      * @var string
      */
-    const ITEM_TEMPLATE = 'AccordionPagePart/Entity/AccordionPagePartItem.php.twig';
+    const TEMPLATE = 'Entity/PageParts/AccordionPagePart.php.twig';
+
+    /**
+     * @var string
+     */
+    const ITEM_TEMPLATE = 'Entity/AccordionPagePartItem.php.twig';
+
+    /**
+     * @var string
+     */
+    const ADMIN_TYPE_TEMPLATE = 'Form/PageParts/AccordionPagePartAdminType.php.twig';
+
+    /**
+     * @var string
+     */
+    const ITEM_ADMIN_TYPE_TEMPLATE = 'Form/AccordionPagePartItemAdminType.php.twig';
 
     /**
      * @var array
@@ -31,6 +46,8 @@ class AccordionPagePartGenerator implements Helper\GeneratorInterface, Helper\Ch
         'titleFieldName'       => 'title',
         'descriptionFieldName' => 'description',
         'itemFieldName'        => 'items',
+        'useWysiwyg'           => true,
+        'includeDisplayOrder'  => true,
         'vendor'               => 'Superrb',
         'bundle'               => 'PagePartGeneratorTestBundle',
     ];

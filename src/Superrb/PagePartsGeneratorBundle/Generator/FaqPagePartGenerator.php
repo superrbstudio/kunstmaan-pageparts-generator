@@ -2,6 +2,8 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator;
 
+use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
+
 class FaqPagePartGenerator extends AccordionPagePartGenerator
 {
     use Helper\GeneratesPageParts;
@@ -20,7 +22,13 @@ class FaqPagePartGenerator extends AccordionPagePartGenerator
         'titleFieldName'       => 'question',
         'descriptionFieldName' => 'answer',
         'itemFieldName'        => 'questions',
-        'vendor'               => 'Superrb',
-        'bundle'               => 'PagePartGeneratorTestBundle',
     ];
+
+    /**
+     * @return GeneratorOptions
+     */
+    protected function getDefaultOptions(): GeneratorOptions
+    {
+        return parent::getDefaultOptions()->merge(new GeneratorOptions(self::DEFAULT_OPTIONS));
+    }
 }
