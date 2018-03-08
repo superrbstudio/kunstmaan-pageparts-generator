@@ -2,10 +2,10 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Command;
 
+use Sensio\Bundle\GeneratorBundle\Command\GeneratorCommand;
 use Superrb\PagePartsGeneratorBundle\Generator\BannerPagePartGenerator;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class GenerateBannerPagePartCommand extends ContainerAwareCommand implements Contract\GeneratePagePartCommandInterface
+class GenerateBannerPagePartCommand extends GeneratorCommand implements Contract\GeneratePagePartCommandInterface
 {
     use Helper\GeneratesPageParts;
 

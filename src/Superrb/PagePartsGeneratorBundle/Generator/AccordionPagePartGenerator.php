@@ -41,8 +41,6 @@ class AccordionPagePartGenerator implements Contract\GeneratorInterface, Contrac
      * @var array
      */
     const DEFAULT_OPTIONS = [
-        'className'            => 'AccordionPagePart',
-        'tableName'            => 'accordion_page_parts',
         'titleFieldName'       => 'title',
         'descriptionFieldName' => 'description',
         'itemFieldName'        => 'items',

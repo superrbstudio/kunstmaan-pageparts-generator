@@ -5,11 +5,18 @@ namespace Superrb\PagePartsGeneratorBundle\Generator\Contract;
 use Superrb\PagePartsGeneratorBundle\Exception\GeneratorException;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 interface GeneratorInterface
 {
+    const BASE_OPTION_SPEC = [
+        'className' => [
+            'label'    => 'Class Name',
+            'required' => true,
+            'type'     => 'String',
+            'validate' => '/PagePart$/',
+        ],
+    ];
+
     /**
      * @param GeneratorFactory $factory
      * @param GeneratorOptions $options
@@ -20,14 +27,6 @@ interface GeneratorInterface
      * @return GeneratorOptions
      */
     public function getDefaultOptions(): GeneratorOptions;
-
-    /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
-     * @return self
-     */
-    public function setIo(InputInterface $input, OutputInterface $output): self;
 
     /**
      * Generates the required page part.

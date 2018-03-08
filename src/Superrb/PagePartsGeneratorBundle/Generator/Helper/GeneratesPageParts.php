@@ -55,22 +55,6 @@ trait GeneratesPageParts
     }
 
     /**
-     * @see GeneratorInterface::setIo()
-     *
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
-     * @return GeneratorInterface
-     */
-    public function setIo(InputInterface $input, OutputInterface $output): GeneratorInterface
-    {
-        $this->input  = $input;
-        $this->output = $output;
-
-        return $this;
-    }
-
-    /**
      * @see GeneratorInterface::generate()
      *
      * @return bool

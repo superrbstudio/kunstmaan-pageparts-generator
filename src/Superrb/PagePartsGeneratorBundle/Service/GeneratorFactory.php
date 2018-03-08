@@ -106,13 +106,13 @@ class GeneratorFactory
      *
      * @return GeneratorInterface
      */
-    public function create(string $type, array $options): GeneratorInterface
+    public function create(string $type, GeneratorOptions $options): GeneratorInterface
     {
         if (!isset(self::TYPES[$type]) || !($class = self::TYPES[$type])) {
             throw new GeneratorException("The generator '${type}' could not be found");
         }
 
-        $generator = new $class($this, new GeneratorOptions($options));
+        $generator = new $class($this, $options);
 
         if (!($generator instanceof GeneratorInterface)) {
             throw new GeneratorException($class.' is not a valid instance of '.GeneratorInterface::class);

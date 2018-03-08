@@ -2,13 +2,13 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Command;
 
+use Kunstmaan\GeneratorBundle\Command\KunstmaanGenerateCommand;
 use Superrb\PagePartsGeneratorBundle\Generator\AccordionPagePartGenerator;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class GenerateAccordionPagePartCommand extends ContainerAwareCommand implements Contract\GeneratePagePartCommandInterface
+class GenerateAccordionPagePartCommand extends KunstmaanGenerateCommand implements Contract\GeneratePagePartCommandInterface
 {
     use Helper\GeneratesPageParts {
-        Helper\GeneratesPageParts::configure as __configureBase;
+        Helper\GeneratesPageParts::doInteract as parentDoInteract;
     }
 
     /**
@@ -16,11 +16,8 @@ class GenerateAccordionPagePartCommand extends ContainerAwareCommand implements 
      */
     const TYPE = AccordionPagePartGenerator::TYPE;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configure(): void
+    public function doInteract()
     {
-        $this->__configureBase();
+        $this->parentDoInteract();
     }
 }

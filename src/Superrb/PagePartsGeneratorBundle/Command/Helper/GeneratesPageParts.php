@@ -2,6 +2,8 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Command\Helper;
 
+use Kunstmaan\GeneratorBundle\Helper\CommandAssistant;
+use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,10 +22,25 @@ trait GeneratesPageParts
     protected $output;
 
     /**
+     * @var GeneratorOptions
+     */
+    protected $options;
+
+    /**
+     * @var CommandAssistant
+     */
+    protected $assistant;
+
+    /**
      * Configure the command.
      */
-    public function configure(): void
+    protected function configure(): void
     {
+        if (!$this->options) {
+            $this->options         = new GeneratorOptions();
+            $this->options->vendor = $this->getApplication();
+        }
+
         if (!($this instanceof ContainerAwareCommand)) {
             throw new BadMethodCallException('The trait Superrb\PagePartsGeneratorBundle\Command\Helper may only be applied to classes which extend '.ContainerAwareCommand::class);
         }
@@ -40,21 +57,35 @@ trait GeneratesPageParts
      */
     public function generate(): bool
     {
-        $generatorFactory = $this->getContainer()->get('superrb_page_parts_generator.generator_factory');
-
-        return $generatorFactory->create(static::TYPE, [])
-            ->setIo($this->input, $this->output)
-            ->generate();
+        return $this->createGenerator()->generate();
     }
 
     /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
+     * @see GeneratorCommand::createGenerator()
      */
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function createGenerator()
     {
-        $this->input  = $input;
-        $this->output = $output;
-        $output->writeln($this->generate());
+        $generatorFactory = $this->getContainer()->get('superrb_page_parts_generator.generator_factory');
+
+        return $generatorFactory->create(static::TYPE, $this->options);
+    }
+
+    public function doInteract()
+    {
+        $bundle = $this->askForBundleName('pagepart');
+
+        [$vendor, $bundleName] = explode('\\', $bundle->getNamespace());
+        $this->options->vendor = $vendor;
+        $this->options->bundle = $bundleName;
+    }
+
+    public function doExecute()
+    {
+        $this->assistant->writeLine($this->generate());
+    }
+
+    public function getWelcomeText()
+    {
+        return 'Generating new '.static::TYPE.' page part';
     }
 }
