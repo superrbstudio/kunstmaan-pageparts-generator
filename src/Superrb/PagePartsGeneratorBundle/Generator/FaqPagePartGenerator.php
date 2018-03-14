@@ -12,11 +12,14 @@ class FaqPagePartGenerator extends AccordionPagePartGenerator implements Contrac
     const TYPE = 'faq';
 
     /**
+     * @var string
+     */
+    const TYPE_CLASS = 'FaqPagePart';
+
+    /**
      * @var array
      */
     const DEFAULT_OPTIONS = [
-        'className'            => 'FaqPagePart',
-        'tableName'            => 'faq_page_parts',
         'titleFieldName'       => 'question',
         'descriptionFieldName' => 'answer',
         'itemFieldName'        => 'questions',

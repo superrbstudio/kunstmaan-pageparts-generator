@@ -2,6 +2,7 @@
 
 namespace Superrb\PagePartsGeneratorBundle\Generator\Helper;
 
+use Doctrine\Common\Inflector\Inflector;
 use Superrb\PagePartsGeneratorBundle\Generator\Contract\ChildGeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\Generator\Contract\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
@@ -9,6 +10,8 @@ use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 trait GeneratesPageParts
 {
@@ -23,6 +26,11 @@ trait GeneratesPageParts
     protected $options;
 
     /**
+     * @var ObjectNormalizer
+     */
+    protected $normalizer;
+
+    /**
      * @var InputInterface
      */
     protected $input;
@@ -35,13 +43,27 @@ trait GeneratesPageParts
     /**
      * @see GeneratorInterface::__construct()
      *
-     * @param GeneratorFactory $factory
-     * @param GeneratorOptions $options
+     * @param GeneratorFactory      $factory
+     * @param GeneratorOptions|null $options
      */
-    public function __construct(GeneratorFactory $factory, GeneratorOptions $options)
+    public function __construct(GeneratorFactory $factory, ?GeneratorOptions $options)
     {
-        $this->factory   = $factory;
-        $this->options   = $this->getDefaultOptions()->merge($options);
+        $this->factory    = $factory;
+        $options          = $options ?: new GeneratorOptions();
+        $this->options    = $this->getDefaultOptions()->merge($options);
+        $this->normalizer = new CamelCaseToSnakeCaseNameConverter();
+
+        if (!$this->options->className) {
+            $this->options->className = static::TYPE_CLASS;
+        }
+
+        if (!$this->options->tableName) {
+            $this->options->tableName = $this->normalizer->normalize(Inflector::pluralize($this->options->className));
+        }
+
+        if ($this->options->prefix) {
+            $this->options->tableName = $this->options->prefix.'_'.$this->options->tableName;
+        }
     }
 
     /**

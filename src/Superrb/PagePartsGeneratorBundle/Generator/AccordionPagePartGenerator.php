@@ -46,7 +46,5 @@ class AccordionPagePartGenerator implements Contract\GeneratorInterface, Contrac
         'itemFieldName'        => 'items',
         'useWysiwyg'           => true,
         'includeDisplayOrder'  => true,
-        'vendor'               => 'Superrb',
-        'bundle'               => 'PagePartGeneratorTestBundle',
     ];
 }

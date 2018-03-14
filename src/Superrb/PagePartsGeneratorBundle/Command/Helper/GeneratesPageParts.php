@@ -72,11 +72,52 @@ trait GeneratesPageParts
 
     public function doInteract()
     {
+        $generatorFactory = $this->getContainer()->get('superrb_page_parts_generator.generator_factory');
+        $generator        = $generatorFactory->create(static::TYPE);
+
         $bundle = $this->askForBundleName('pagepart');
 
         [$vendor, $bundleName] = explode('\\', $bundle->getNamespace());
         $this->options->vendor = $vendor;
         $this->options->bundle = $bundleName;
+
+        $defaultPrefix         = strtolower(preg_replace('/[^A-Z]/', '', $bundle->getNamespace()));
+        $this->options->prefix = $this->assistant->ask('prefix', $defaultPrefix);
+
+        $this->options->className = $this->assistant->ask('className', $generator::TYPE_CLASS);
+
+        foreach ($generator->getDefaultOptions() as $option => $default) {
+            switch (gettype($default)) {
+                case 'boolean':
+                    $formattedDefault = $default ? 'true' : 'false';
+                    break;
+                case 'array':
+                    $formattedDefault = implode(',', $default);
+                    break;
+                default:
+                    $formattedDefault = $default;
+                    break;
+            }
+
+            $value = $this->assistant->ask($option, $formattedDefault);
+
+            switch (gettype($default)) {
+                case 'boolean':
+                    $formattedValue = 'false' === $value ? false : true;
+                    break;
+                case 'int':
+                    $formattedValue = (int) $value;
+                    break;
+                case 'array':
+                    $formattedValue = explode(',', $value);
+                    break;
+                default:
+                    $formattedValue = $value;
+                    break;
+            }
+
+            $this->options->setValueForPath($option, $formattedValue);
+        }
     }
 
     public function doExecute()

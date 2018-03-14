@@ -99,18 +99,14 @@ class GeneratorFactory
     /**
      * Create a generator instance for the requested type.
      *
-     * @param string $type
-     * @param array  $options
-     *
-     * @throws GeneratorException
+     * @param string                $type
+     * @param GeneratorOptions|null $options
      *
      * @return GeneratorInterface
      */
-    public function create(string $type, GeneratorOptions $options): GeneratorInterface
+    public function create(string $type, ?GeneratorOptions $options = null): GeneratorInterface
     {
-        if (!isset(self::TYPES[$type]) || !($class = self::TYPES[$type])) {
-            throw new GeneratorException("The generator '${type}' could not be found");
-        }
+        $class = $this->getGeneratorClass($type);
 
         $generator = new $class($this, $options);
 
@@ -119,5 +115,21 @@ class GeneratorFactory
         }
 
         return $generator;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @throws GeneratorException
+     *
+     * @return string
+     */
+    public function getGeneratorClass(string $type): string
+    {
+        if (!isset(self::TYPES[$type]) || !($class = self::TYPES[$type])) {
+            throw new GeneratorException("The generator '${type}' could not be found");
+        }
+
+        return $class;
     }
 }
