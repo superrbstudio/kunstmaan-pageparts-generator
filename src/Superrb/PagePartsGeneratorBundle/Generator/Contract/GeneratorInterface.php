@@ -11,17 +11,17 @@ interface GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '{class}/Entity/PageParts/{class}.php.twig';
+    const TEMPLATE = 'Entity/PageParts/{class}.php';
 
     /**
      * @var string
      */
-    const ADMIN_TYPE_TEMPLATE = '{class}/Form/PageParts/{class}AdminType.php.twig';
+    const ADMIN_TYPE_TEMPLATE = 'Form/PageParts/{class}AdminType.php';
 
     /**
      * @var string
      */
-    const VIEW_TEMPLATE = '{class}/Resources/views/PageParts/{class}/view.html.twig';
+    const VIEW_TEMPLATE = 'Resources/views/PageParts/{class}/view.html.twig';
 
     /**
      * @param GeneratorFactory $factory

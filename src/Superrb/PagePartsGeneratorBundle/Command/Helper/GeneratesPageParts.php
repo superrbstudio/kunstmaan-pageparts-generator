@@ -79,9 +79,10 @@ trait GeneratesPageParts
         // Ask (or deduce) the bundle name
         $bundle = $this->askForBundleName('pagepart');
 
-        [$vendor, $bundleName] = explode('\\', $bundle->getNamespace());
-        $this->options->vendor = $vendor;
-        $this->options->bundle = $bundleName;
+        [$vendor, $bundleName]     = explode('\\', $bundle->getNamespace());
+        $this->options->vendor     = $vendor;
+        $this->options->bundle     = $bundleName;
+        $this->options->bundlePath = $bundle->getPath();
 
         // Ask for the table name prefix
         $defaultPrefix         = strtolower(preg_replace('/[^A-Z]/', '', $bundle->getNamespace()));

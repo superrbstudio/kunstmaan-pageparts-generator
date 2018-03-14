@@ -9,12 +9,12 @@ interface ChildGeneratorInterface extends GeneratorInterface
     /**
      * @var string
      */
-    const ITEM_TEMPLATE = '{class}/Entity/{class}Item.php.twig';
+    const ITEM_TEMPLATE = 'Entity/{class}Item.php';
 
     /**
      * @var string
      */
-    const ITEM_ADMIN_TYPE_TEMPLATE = '{class}/Form/{class}ItemAdminType.php.twig';
+    const ITEM_ADMIN_TYPE_TEMPLATE = 'Form/{class}ItemAdminType.php';
 
     /**
      * Generates the required page part.

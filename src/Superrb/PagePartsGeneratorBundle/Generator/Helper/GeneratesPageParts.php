@@ -75,12 +75,36 @@ trait GeneratesPageParts
             $this->generateChildren();
         }
 
-        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::TEMPLATE), $this->options->toArray());
-        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::ADMIN_TYPE_TEMPLATE), $this->options->toArray());
-        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::VIEW_TEMPLATE), $this->options->toArray());
+        $options = $this->options->toArray();
+
+        $this->generateFile(self::TEMPLATE);
+        $this->generateFile(self::ADMIN_TYPE_TEMPLATE);
+        $this->generateFile(self::VIEW_TEMPLATE);
 
         exit;
 
         return true;
+    }
+
+    /**
+     * @param string                $template
+     * @param GeneratorOptions|null $options
+     */
+    protected function generateFile($template, ?GeneratorOptions $options = null): void
+    {
+        if (null === $options) {
+            $options = $this->options;
+        }
+
+        $template = str_replace('{class}', self::TYPE_CLASS, $template);
+        $path     = $options->bundlePath.'/'.$template;
+
+        if (!is_dir(dirname($path))) {
+            mkdir(dirname($path), 0755, true);
+        }
+        $resource = fopen($options->bundlePath.'/'.$template, 'w');
+
+        $twig = $this->factory->getTwig();
+        fwrite($resource, $twig->render(self::TYPE_CLASS.'/'.$template.'.twig', $options->toArray()));
     }
 }
