@@ -14,7 +14,7 @@ class SlideshowPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/SlideshowPagePart.php.twig';
+    const TYPE_CLASS = 'SlideshowPagePart';
 
     /**
      * @var array

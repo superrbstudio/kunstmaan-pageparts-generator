@@ -14,7 +14,7 @@ class ContactDetailsPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/ContactDetailsPagePart.php.twig';
+    const TYPE_CLASS = 'ContactDetailsPagePart';
 
     /**
      * @var array

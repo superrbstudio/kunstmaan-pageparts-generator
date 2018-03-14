@@ -14,7 +14,7 @@ class GalleryPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/GalleryPagePart.php.twig';
+    const TYPE_CLASS = 'GalleryPagePart';
 
     /**
      * @var array

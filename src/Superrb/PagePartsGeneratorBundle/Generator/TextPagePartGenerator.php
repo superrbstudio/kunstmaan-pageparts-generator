@@ -14,7 +14,7 @@ class TextPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/TextPagePart.php.twig';
+    const TYPE_CLASS = 'TextPagePart';
 
     /**
      * @var array

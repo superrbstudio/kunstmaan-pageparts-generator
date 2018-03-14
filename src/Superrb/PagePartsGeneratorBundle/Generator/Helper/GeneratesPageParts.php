@@ -75,11 +75,9 @@ trait GeneratesPageParts
             $this->generateChildren();
         }
 
-        echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::TEMPLATE, $this->options->toArray());
-
-        if (self::ADMIN_TYPE_TEMPLATE) {
-            echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::ADMIN_TYPE_TEMPLATE, $this->options->toArray());
-        }
+        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::TEMPLATE), $this->options->toArray());
+        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::ADMIN_TYPE_TEMPLATE), $this->options->toArray());
+        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::VIEW_TEMPLATE), $this->options->toArray());
 
         exit;
 

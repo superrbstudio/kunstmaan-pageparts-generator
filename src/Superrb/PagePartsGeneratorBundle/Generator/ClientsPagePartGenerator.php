@@ -14,7 +14,7 @@ class ClientsPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/ClientsPagePart.php.twig';
+    const TYPE_CLASS = 'ClientsPagePart';
 
     /**
      * @var array

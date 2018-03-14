@@ -14,7 +14,7 @@ class TeamPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/TeamPagePart.php.twig';
+    const TYPE_CLASS = 'TeamPagePart';
 
     /**
      * @var array

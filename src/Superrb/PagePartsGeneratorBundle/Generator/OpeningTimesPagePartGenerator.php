@@ -14,7 +14,7 @@ class OpeningTimesPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/OpeningTimesPagePart.php.twig';
+    const TYPE_CLASS = 'OpeningTimesPagePart';
 
     /**
      * @var array

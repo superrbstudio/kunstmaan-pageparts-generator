@@ -14,7 +14,7 @@ class MapPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/MapPagePart.php.twig';
+    const TYPE_CLASS = 'MapPagePart';
 
     /**
      * @var array

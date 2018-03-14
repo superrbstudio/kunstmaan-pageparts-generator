@@ -9,6 +9,21 @@ use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
 interface GeneratorInterface
 {
     /**
+     * @var string
+     */
+    const TEMPLATE = '{class}/Entity/PageParts/{class}.php.twig';
+
+    /**
+     * @var string
+     */
+    const ADMIN_TYPE_TEMPLATE = '{class}/Form/PageParts/{class}AdminType.php.twig';
+
+    /**
+     * @var string
+     */
+    const VIEW_TEMPLATE = '{class}/Resources/views/PageParts/{class}/view.html.twig';
+
+    /**
      * @param GeneratorFactory $factory
      * @param GeneratorOptions $options
      */

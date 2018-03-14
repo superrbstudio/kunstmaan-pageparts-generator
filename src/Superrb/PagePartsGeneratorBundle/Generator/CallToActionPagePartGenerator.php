@@ -14,7 +14,7 @@ class CallToActionPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/CallToActionPagePart.php.twig';
+    const TYPE_CLASS = 'CallToActionPagePart';
 
     /**
      * @var array

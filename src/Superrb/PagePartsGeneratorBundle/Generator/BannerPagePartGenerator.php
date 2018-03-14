@@ -14,7 +14,7 @@ class BannerPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/BannerPagePart.php.twig';
+    const TYPE_CLASS = 'BannerPagePart';
 
     /**
      * @var array

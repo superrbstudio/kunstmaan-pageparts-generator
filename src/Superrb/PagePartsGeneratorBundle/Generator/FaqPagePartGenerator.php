@@ -23,5 +23,6 @@ class FaqPagePartGenerator extends AccordionPagePartGenerator implements Contrac
         'titleFieldName'       => 'question',
         'descriptionFieldName' => 'answer',
         'itemFieldName'        => 'questions',
+        'htmlClassName'        => 'faq',
     ];
 }

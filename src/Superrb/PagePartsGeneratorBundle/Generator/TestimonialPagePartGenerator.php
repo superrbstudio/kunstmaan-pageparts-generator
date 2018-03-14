@@ -14,7 +14,7 @@ class TestimonialPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/TestimonialPagePart.php.twig';
+    const TYPE_CLASS = 'TestimonialPagePart';
 
     /**
      * @var array

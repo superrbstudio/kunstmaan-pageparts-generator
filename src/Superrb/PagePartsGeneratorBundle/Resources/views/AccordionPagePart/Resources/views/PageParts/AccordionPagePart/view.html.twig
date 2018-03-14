@@ -1,0 +1,21 @@
+<section class="{{ htmlClassName }}">
+  <h2 class="{{ htmlClassName }}__title">{{ '{{ resource.title }}' }}</h2>
+
+  {% if useWysiwyg %}
+{{ '{{ resource.description }}' }}
+  {% else %}
+<p class="{{ htmlClassName }}__description">{{ '{{ resource.description | nl2br }}' }}</p>
+  {% endif %}
+
+  <dl class="{{ htmlClassName }}__{{ itemFieldName }}">
+    {{ '{% for ' ~ (itemFieldName | singularize) ~ ' in resource.' ~ itemFieldName ~ ' %}' }}
+      <dt class="{{ htmlClassName }}__{{ itemFieldName | singularize }}-{{ titleFieldName }}">
+        {{ '{{ ' ~ (itemFieldName | singularize) ~ '.' ~ titleFieldName ~ ' }}' }}
+      </dt>
+
+      <dd class="{{ htmlClassName }}__{{ itemFieldName | singularize }}-{{ descriptionFieldName }}">
+        {{ '{{ ' ~ (itemFieldName | singularize) ~ '.' ~ descriptionFieldName ~ ' }}' }}
+      </dd>
+    {{ '{% endfor %}' }}
+  </dl>
+</section>

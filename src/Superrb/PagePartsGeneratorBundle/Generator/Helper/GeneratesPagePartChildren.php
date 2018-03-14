@@ -25,11 +25,8 @@ trait GeneratesPagePartChildren
         $itemOptions->parentTableName = $itemOptions->tableName;
         $itemOptions->tableName       = $itemOptions->itemTableName;
 
-        echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::ITEM_TEMPLATE, $itemOptions->toArray());
-
-        if (self::ITEM_ADMIN_TYPE_TEMPLATE) {
-            echo $this->factory->getTwig()->render(self::TYPE_CLASS.'/'.self::ITEM_ADMIN_TYPE_TEMPLATE, $itemOptions->toArray());
-        }
+        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::ITEM_TEMPLATE), $itemOptions->toArray());
+        echo $this->factory->getTwig()->render(str_replace('{class}', self::TYPE_CLASS, self::ITEM_ADMIN_TYPE_TEMPLATE), $itemOptions->toArray());
 
         return true;
     }

@@ -6,6 +6,8 @@ interface GeneratePagePartCommandInterface
 {
     /**
      * Run the requested generator.
+     *
+     * @return bool
      */
     public function generate(): bool;
 }

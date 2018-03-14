@@ -14,7 +14,7 @@ class QuotePagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/QuotePagePart.php.twig';
+    const TYPE_CLASS = 'QuotePagePart';
 
     /**
      * @var array

@@ -14,7 +14,7 @@ class SocialMediaPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/SocialMediaPagePart.php.twig';
+    const TYPE_CLASS = 'SocialMediaPagePart';
 
     /**
      * @var array

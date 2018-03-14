@@ -3,6 +3,7 @@
 namespace Superrb\PagePartsGeneratorBundle\Command\Helper;
 
 use Kunstmaan\GeneratorBundle\Helper\CommandAssistant;
+use Superrb\PagePartsGeneratorBundle\Generator\Contract\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -60,7 +61,7 @@ trait GeneratesPageParts
     }
 
     /**
-     * @see GeneratorCommand::createGenerator()
+     * @return GeneratorInterface
      */
     public function createGenerator()
     {
@@ -136,6 +137,9 @@ trait GeneratesPageParts
         $this->assistant->writeLine($this->generate());
     }
 
+    /**
+     * @return string
+     */
     public function getWelcomeText()
     {
         return 'Generating new '.static::TYPE.' page part';

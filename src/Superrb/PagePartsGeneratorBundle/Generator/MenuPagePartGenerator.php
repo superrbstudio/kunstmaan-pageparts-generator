@@ -14,7 +14,7 @@ class MenuPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/MenuPagePart.php.twig';
+    const TYPE_CLASS = 'MenuPagePart';
 
     /**
      * @var array

@@ -14,7 +14,7 @@ class VideoPagePartGenerator implements Contract\GeneratorInterface
     /**
      * @var string
      */
-    const TEMPLATE = '@SuperrbPagePartsGenerator:Entity/VideoPagePart.php.twig';
+    const TYPE_CLASS = 'VideoPagePart';
 
     /**
      * @var array
