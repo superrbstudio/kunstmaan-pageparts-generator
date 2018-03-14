@@ -96,15 +96,18 @@ trait GeneratesPageParts
             $options = $this->options;
         }
 
-        $template = str_replace('{class}', self::TYPE_CLASS, $template);
-        $path     = $options->bundlePath.'/'.$template;
+        // src and write paths (self|static) may be different, depending on whether the
+        // generator inherits from another generator
+        $srcTemplate   = str_replace('{class}', self::TYPE_CLASS, $template);
+        $writeTemplate = str_replace('{class}', static::TYPE_CLASS, $template);
+        $writePath     = $options->bundlePath.'/'.$writeTemplate;
 
-        if (!is_dir(dirname($path))) {
-            mkdir(dirname($path), 0755, true);
+        if (!is_dir(dirname($writePath))) {
+            mkdir(dirname($writePath), 0755, true);
         }
-        $resource = fopen($options->bundlePath.'/'.$template, 'w');
+        $resource = fopen($writePath, 'w');
 
         $twig = $this->factory->getTwig();
-        fwrite($resource, $twig->render(self::TYPE_CLASS.'/'.$template.'.twig', $options->toArray()));
+        fwrite($resource, $twig->render(self::TYPE_CLASS.'/'.$srcTemplate.'.twig', $options->toArray()));
     }
 }
