@@ -57,8 +57,8 @@ class GeneratorFactory
     protected $twig;
 
     /**
-     * @param Environment $twig
      * @param FileLocator $fileLocator
+     * @param Environment $twig
      */
     public function __construct(FileLocator $fileLocator, Environment $twig)
     {
@@ -126,10 +126,10 @@ class GeneratorFactory
      */
     public function getGeneratorClass(string $type): string
     {
-        if (!isset(self::TYPES[$type]) || !($class = self::TYPES[$type])) {
+        if (!isset(self::TYPES[$type]) || !self::TYPES[$type]) {
             throw new GeneratorException("The generator '${type}' could not be found");
         }
 
-        return $class;
+        return self::TYPES[$type];
     }
 }

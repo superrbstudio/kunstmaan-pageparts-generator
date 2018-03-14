@@ -8,15 +8,6 @@ use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
 
 interface GeneratorInterface
 {
-    const BASE_OPTION_SPEC = [
-        'className' => [
-            'label'    => 'Class Name',
-            'required' => true,
-            'type'     => 'String',
-            'validate' => '/PagePart$/',
-        ],
-    ];
-
     /**
      * @param GeneratorFactory $factory
      * @param GeneratorOptions $options

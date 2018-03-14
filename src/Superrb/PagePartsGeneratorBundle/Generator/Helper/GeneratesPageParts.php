@@ -7,8 +7,6 @@ use Superrb\PagePartsGeneratorBundle\Generator\Contract\ChildGeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\Generator\Contract\GeneratorInterface;
 use Superrb\PagePartsGeneratorBundle\GeneratorOptions;
 use Superrb\PagePartsGeneratorBundle\Service\GeneratorFactory;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -29,16 +27,6 @@ trait GeneratesPageParts
      * @var ObjectNormalizer
      */
     protected $normalizer;
-
-    /**
-     * @var InputInterface
-     */
-    protected $input;
-
-    /**
-     * @var OutputInterface
-     */
-    protected $output;
 
     /**
      * @see GeneratorInterface::__construct()
